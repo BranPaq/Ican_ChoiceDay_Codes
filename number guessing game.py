@@ -1,25 +1,26 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 import random
-
-#playerNum
-def PlayerNumber():
-    playerNum = input
-
-#BotNumber
-def BotNumber():
-    botNum = random.randint(0, 5)
+import time
 
 #Compare
 def Compare():
-    if playerNum == botNumber:
-        output_string = tk.StringVar()
-        results = ttk.Label(master = window, text = 'You guessed right!', font = 'calibri, 12 bold')
+    playerNum = entry_int.get()
+    botNum = random.randint(1, 5)
+    if playerNum == botNum:
+        results = ttk.Label(master = window, text = 'You guessed correctly!', font = 'calibri, 12 bold')
+    elif playerNum >= 6:
+        results = ttk.Label(master = window, text = 'Invalid input.', font = 'calibri, 12 bold')
+    elif playerNum <= 0:
+        results = ttk.Label(master = window, text = 'Invalid input.', font = 'calibri, 12 bold')
+    else:
+        results = ttk.Label(master = window, text = 'You did not guess correctly. Try again.', font = 'calibri, 12 bold')
+    results.pack(pady = 10)
 
 #creates window
 window = ttk.Window(themename = 'solar')
 window.title('Number Guess')
-window.geometry('800x150')
+window.geometry('500x150')
 
 #top text
 title_label = ttk.Label(master = window, text = 'Guess the number', font = 'calibri, 12 bold')
@@ -37,6 +38,4 @@ button.pack(side = 'left')
 input_frame.pack(pady = 10)
 
 #run
-PlayerNum()
-BotNum()
 window.mainloop()
